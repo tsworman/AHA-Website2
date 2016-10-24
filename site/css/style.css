@@ -450,7 +450,7 @@ i.fa.fa-users,i.fa.fa-asterisk,i.fa.fa-money,i.fa.fa-cog {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-i.fa.fa-twitter,i.fa.fa-facebook,i.fa.fa-google-plus,i.fa.fa-dribbble{
+i.fa.fa-twitter,i.fa.fa-facebook,i.fa.fa-google-plus,i.fa.fa-envelope,i.fa.fa-calendar,i.fa.fa-street-view{
     color: #FFF;
     font-size: 1.5em;
 }
@@ -470,8 +470,14 @@ i.fa.fa-twitter,i.fa.fa-facebook,i.fa.fa-google-plus,i.fa.fa-dribbble{
 .footer-icons  ul li a.chrome{
 	background:#dc4e41;
 }
-.footer-icons  ul li a.dribbble{
-	background:#ea4c89;
+.footer-icons  ul li a.email{
+	background:#b3b3b3;
+}
+.footer-icons  ul li a.maps{
+	background:#00cc00;
+}
+.footer-icons  ul li a.meetup{
+	background:#cc0000;
 }
 .footer-icons  ul li a.twitter:hover{
 	background: #FD5C63;
