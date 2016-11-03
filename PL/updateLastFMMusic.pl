@@ -1,35 +1,32 @@
 #!/usr/bin/perl
-use lib "/home/jnovaslp/perl/usr/lib/perl5/site_perl/5.8.8";
+##use lib "/home/jnovaslp/perl/usr/lib/perl5/site_perl/5.8.8";
 ####
-#Last FM Music feed fethcer
+#Meetup Feed Fetcher
 #
-#Originally Developed by: Tyler Worman tsworman@lurkingplacestudios.com
+#Originally Developed by: Tyler Worman nova1313@novaslp.net
 #
-#Please report all bugs to: support@lurkingplacestudios.com
-#Last Updated: 7/3/2010
+#Please report all bugs to: operations@allhandsactive.org
+#Last Updated: 11/3/2016
 #
-# 
 #Version 1.0
 #
-#
 #Purpose:
-#Fetch and parse an RSS Feed from Last FM for Music.
+#Fetch and parse an RSS Feed from Meetup for events.
 #
 #Open Source, but you may not sell any dirivative of this code. 
 #You need not publish any changes you make, but if you do let us know.
-#Contact: Support@lurkingplacestudios.com with any questions on licensing.
+
+#Contact: support@novaslp.net with any questions on licensing.
 #
 
 ##Includes, basic stuff for web.
-
 use XML::Simple;
 use HTTP::Request;
 use LWP::UserAgent;
 use Data::Dumper;
 
-
 #Fetch RSS Feed
-$rss = "http://ws.audioscrobbler.com/2.0/user/MajesticMantra/recenttracks.rss";
+$rss = "https://www.meetup.com/AllHandsActive/events/rss/";
 
 my $ua = LWP::UserAgent->new;
 
@@ -42,10 +39,13 @@ if ($res->is_success) {
     $data = $xml->XMLin($res->content);
     ##print Dumper($data);
     ##Get number of entries not to exceed 10
-    $count = @{$data->{channel}{item}};
+    $count = @{$data->{item}};
+	if ($count > 10) {
+	   $count = 10;
+	}
     ##Print text
     for ($i = 0; $i < $count; $i++) {
-	print "<a href=$data->{channel}{item}[$i]{link}>$data->{channel}{item}[$i]{title}</a> @ $data->{channel}{item}[$i]{pubDate}<br>\n";
+		print "<a href=$data->{item}[$i]{guid}>$data->{item}[$i]{title}</a> @ $data->{channel}{item}[$i]{pubDate}<br>\n";
     }
 } else {
 	print Dumper($res);
